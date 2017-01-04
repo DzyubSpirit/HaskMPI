@@ -15,10 +15,6 @@ main = mpiWorld $ \size rank ->
       putStrLn msg
     i -> when (i < 3) $
            funcs !! fromInteger (toInteger i) >>= send commWorld 3 unitTag
-    {-0 -> do (msg, _status) <- recv commWorld 1 unitTag-}
-            {-putStrLn msg-}
-    {-1 -> send commWorld 0 unitTag "Hello World"-}
-    {-_ -> return ()                     -}
 
 funcs = [f1, f2, f3]
 
