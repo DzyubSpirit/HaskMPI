@@ -56,3 +56,28 @@ sudo dnf install openmpi openmpi-devel
 ```
 stack build
 ```
+
+Чтобы запустить программу необходимо сперва настроить mpi:
+Сначала создать ссылку на mpirun, чтобы можно было вместо
+/usr/lib64/openmpi/bin/mpirun писать просто mpirun.
+```
+sudo ln -s /usr/lib64/openmpi/bin/mpirun /usr/bin
+```
+Затем добавить путь к библиотекам openmpi для всех приложений. Для этого нужно
+создать файл /etc/ld.so.conf.d/openmpi-x86_64.conf и записать в нем путь к
+файлам библиотеки /usr/lib64/openmpi/lib.
+Чтобы сделать через консоль можно использовать такие команды:
+```
+sudo vim /etc/ld.so.conf.d/openmpi-x86_64.conf
+```
+Затем нажать 'i' ввести /usr/lib64/openmpi/lib, нажать ESC. Чтобы выйти нужно
+написать :wq.
+Чтобы изменения вступили в силу нужно выполнить команду:
+```
+sudo ldconfig
+```
+
+Наконец можно запустить программу:
+```
+stack exec -- mpirun HaskMPI-exe -np 4
+```
