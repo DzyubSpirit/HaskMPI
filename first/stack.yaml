@@ -1,0 +1,11 @@
+flags: {}
+extra-package-dbs: []
+extra-include-dirs:
+- /usr/include/openmpi-x86_64/
+extra-lib-dirs:
+- /usr/lib64/openmpi/lib  
+packages:
+- '.'
+extra-deps:
+- haskell-mpi-1.4.0
+resolver: lts-7.18
